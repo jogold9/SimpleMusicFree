@@ -15,6 +15,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -25,6 +27,9 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,6 +58,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
     private TextView albumTextView;
     private TextView artistTextView;
     private MediaMetadataRetriever metaRetriver;
+    private boolean connected;
 
     // Media Player
     private MediaPlayer mediaPlayer;
@@ -89,13 +95,19 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-
+        //Change action bar color
         android.app.ActionBar actionBar = getActionBar();
 
         if (actionBar != null) {
             actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#3F51B5")));  //sets action bar to color primary dark
         }
 
+        //Only display Google Admob banner if there is a network connection
+        if(isConnected()) {
+            AdView mAdView = (AdView) findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
+        }
 
         // All player buttons
         btnPlay = (ImageButton) findViewById(R.id.btnPlay);
@@ -581,6 +593,13 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
    /* public String getFolderPath() {
         return folderPath;
     }*/
+
+    //Checks for mobile or wifi connectivity, returns true for connected, false otherwise
+    private boolean isConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
+    }
 
     //get prefs
     public String loadPrefs(String key, String value) {

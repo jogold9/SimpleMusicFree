@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimary">
@@ -7,41 +8,63 @@
     <!-- Player Header -->
     <LinearLayout
         android:id="@+id/player_header_bg"
-        android:layout_width="fill_parent"
-        android:layout_height="60dip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimaryDark"
         android:paddingLeft="5dp"
-        android:paddingRight="5dp">
+        android:paddingRight="5dp"
+        android:orientation="vertical">
 
-        <!-- Song Title -->
-        <TextView
-            android:id="@+id/songTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:paddingLeft="10dp"
-            android:textColor="#04b3d2"
-            android:textSize="16dp"
-            android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <!-- Playlist button -->
-        <ImageButton
-            android:id="@+id/btnPlaylist"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginRight="10dp"
-            android:background="@null"
-            android:src="@drawable/ic_action_menu"/>
+            <!-- Admob banner ad -->
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/banner_ad">
+            </com.google.android.gms.ads.AdView>
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/folder_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:background="@null"
-            android:src="@drawable/ic_file_folder"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dip">
+
+            <!-- Song Title -->
+            <TextView
+                android:id="@+id/songTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:textColor="#04b3d2"
+                android:textSize="16dp"
+                android:textStyle="bold"/>
+
+            <!-- Playlist button -->
+            <ImageButton
+                android:id="@+id/btnPlaylist"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="10dp"
+                android:background="@null"
+                android:src="@drawable/ic_action_menu"/>
+
+            <ImageButton
+                android:id="@+id/folder_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@null"
+                android:src="@drawable/ic_file_folder"
+                />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- Song Thumbnail Image -->
@@ -188,8 +211,8 @@
         android:id="@+id/artist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_above="@+id/album"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -199,10 +222,10 @@
         android:id="@+id/album"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:text=""
+        android:layout_centerVertical="true"
         android:paddingBottom="20dp"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/iconColor"/>
 
