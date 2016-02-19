@@ -1,0 +1,52 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Royal" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Forest" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <item name="colorPrimary">@color/greenPrimary</item>
+    <item name="colorPrimaryDark">@color/greenPrimaryDark</item>
+    <item name="colorAccent">@color/greenIconColor</item>
+</style>
+
+    <style name="Vermilion" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorPrimary">@color/redPrimary</item>
+        <item name="colorPrimaryDark">@color/redPrimaryDark</item>
+        <item name="colorAccent">@color/redIconColor</item>
+    </style>
+
+    <style name="Charcoal" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorPrimary">@color/greyPrimary</item>
+        <item name="colorPrimaryDark">@color/greyPrimaryDark</item>
+        <item name="colorAccent">@color/greyIconColor</item>
+    </style>
+
+    <style name="RoyalNoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ForestNoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/greenPrimary</item>
+        <item name="colorPrimaryDark">@color/greenPrimaryDark</item>
+        <item name="colorAccent">@color/greenIconColor</item>
+    </style>
+
+    <style name="VermilionNoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/redPrimary</item>
+        <item name="colorPrimaryDark">@color/redPrimaryDark</item>
+        <item name="colorAccent">@color/redIconColor</item>
+    </style>
+
+    <style name="CharcoalNoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/greyPrimary</item>
+        <item name="colorPrimaryDark">@color/greyPrimaryDark</item>
+        <item name="colorAccent">@color/greyIconColor</item>
+    </style>
+
+</resources>

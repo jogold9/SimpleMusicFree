@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="colors_array">
+        <item>Royal</item>
+        <item>Forest</item>
+        <item>Vermilion</item>
+        <item>Charcoal</item>
+    </string-array>
+</resources>
