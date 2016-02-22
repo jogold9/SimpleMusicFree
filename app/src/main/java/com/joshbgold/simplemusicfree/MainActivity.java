@@ -103,10 +103,13 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
         }
 
         //Only display Google Admob banner if there is a network connection
+        AdView adView = (AdView) findViewById(R.id.adView);
         if(isConnected()) {
-            AdView mAdView = (AdView) findViewById(R.id.adView);
             AdRequest adRequest = new AdRequest.Builder().build();
-            mAdView.loadAd(adRequest);
+            adView.loadAd(adRequest);
+        }
+        else {
+            adView.setVisibility(View.GONE);
         }
 
         // All player buttons
