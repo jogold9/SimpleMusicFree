@@ -607,8 +607,13 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
     //Checks for mobile or wifi connectivity, returns true for connected, false otherwise
     private boolean isConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        return connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if(networkInfo != null && networkInfo.isConnectedOrConnecting()){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     //get prefs
