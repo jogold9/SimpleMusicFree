@@ -24,10 +24,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -82,6 +84,8 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
     private int song_position;
     public String folderPath = "";
     public String musicFolderPath = "";
+    private AdView adview;
+    private AdListener adListener;
 
     public MainActivity(Context context) {
         this.context = context;
@@ -102,16 +106,6 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
             actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#3F51B5")));  //sets action bar to color primary dark
         }
 
-        //Only display Google Admob banner if there is a network connection
-        AdView adView = (AdView) findViewById(R.id.adView);
-        if(isConnected()) {
-            AdRequest adRequest = new AdRequest.Builder().build();
-            adView.loadAd(adRequest);
-        }
-        else {
-            adView.setVisibility(View.GONE);
-        }
-
         // All player buttons
         btnPlay = (ImageButton) findViewById(R.id.btnPlay);
         btnForward = (ImageButton) findViewById(R.id.btnForward);
@@ -128,6 +122,19 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
         songTotalDurationLabel = (TextView) findViewById(R.id.songTotalDurationLabel);
         albumTextView = (TextView) findViewById(R.id.album);
         artistTextView = (TextView) findViewById(R.id.artist);
+
+        //Only display Google Admob banner if there is a network connection
+        LinearLayout layout = (LinearLayout)findViewById(R.id.ad_layout);
+        adview = (AdView) findViewById(R.id.adView);
+
+        if(isConnected()) {
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adview.loadAd(adRequest);
+        }
+        else {
+        //    Toast.makeText(MainActivity.this, "Oh noes! No connection!", Toast.LENGTH_SHORT).show();
+            adview.setVisibility(View.GONE);
+        }
 
         musicFolderPath = loadPrefs("folder", musicFolderPath);  //if user has chosen a media folder, get their choice
 
