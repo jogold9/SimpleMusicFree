@@ -32,6 +32,10 @@ import java.util.TreeMap;
  */
 public class FileDialog extends ListActivity {
 
+    public static final int MODE_CREATE = 0;
+
+    public static final int MODE_OPEN = 1;
+
     private static final String ITEM_KEY = "key";
     private static final String ITEM_IMAGE = "image";
     private static final String ROOT = "/";
@@ -55,7 +59,7 @@ public class FileDialog extends ListActivity {
     private String currentPath = ROOT;
     private String musicFolderPath = "";
 
-    private int selectionMode = SelectionMode.MODE_CREATE;
+    //private int selectionMode = SelectionMode.MODE_CREATE;
 
     private String[] formatFilter = null;
 
@@ -114,7 +118,7 @@ public class FileDialog extends ListActivity {
         });
 
 
-        selectionMode = getIntent().getIntExtra(SELECTION_MODE, SelectionMode.MODE_CREATE);
+        //selectionMode = getIntent().getIntExtra(SELECTION_MODE, SelectionMode.MODE_CREATE);
 
         formatFilter = getIntent().getStringArrayExtra(FORMAT_FILTER);
 

@@ -179,7 +179,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
 
                 //can user select directories or not
                 intent.putExtra(FileDialog.CAN_SELECT_DIR, true);
-                intent.putExtra(FileDialog.SELECTION_MODE, SelectionMode.MODE_OPEN);  //Prevents new items folder & file creation.
+                //intent.putExtra(FileDialog.SELECTION_MODE, SelectionMode.MODE_OPEN);  //Prevents new items folder & file creation.
 
                 //Stop mediaPlayer if present so that I do not have multiple mediaPlayers running later on when returning to this activity
                 if (mediaPlayer != null) {
