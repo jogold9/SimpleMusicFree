@@ -32,10 +32,6 @@ import java.util.TreeMap;
  */
 public class FileDialog extends ListActivity {
 
-    public static final int MODE_CREATE = 0;
-
-    public static final int MODE_OPEN = 1;
-
     private static final String ITEM_KEY = "key";
     private static final String ITEM_IMAGE = "image";
     private static final String ROOT = "/";
