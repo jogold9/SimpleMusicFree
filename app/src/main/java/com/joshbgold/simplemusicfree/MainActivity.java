@@ -136,6 +136,9 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
             adview.setVisibility(View.GONE);
         }
 
+        //track launches for App Rating Dialog Box
+        AppRater.app_launched(this);
+
         musicFolderPath = loadPrefs("folder", musicFolderPath);  //if user has chosen a media folder, get their choice
 
         // Mediaplayer
@@ -620,5 +623,12 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
     public String loadPrefs(String key, String value) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         return sharedPreferences.getString(key, value);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.stop();
+        finish();
     }
 }
