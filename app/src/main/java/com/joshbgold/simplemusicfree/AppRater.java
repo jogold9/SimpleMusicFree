@@ -11,8 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class AppRater {
-    private final static String APP_TITLE = "Pirate Spanish Free";// App Name
-    private final static String APP_PNAME = "com.joshbgold.PirateSpanishFree";// Package Name
+    private final static String APP_TITLE = "Simple Music Free";// App Name
+    private final static String APP_PNAME = "com.joshbgold.simplemusicfree";// Package Name
 
     private final static int DAYS_UNTIL_PROMPT = 0;//Min number of days
     private static int LAUNCHES_UNTIL_PROMPT = 3;//Min number of launches
