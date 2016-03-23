@@ -185,9 +185,14 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
                 intent.putExtra(FileDialog.CAN_SELECT_DIR, true);
                 //intent.putExtra(FileDialog.SELECTION_MODE, SelectionMode.MODE_OPEN);  //Prevents new items folder & file creation.
 
-                //Stop mediaPlayer if present so that I do not have multiple mediaPlayers running later on when returning to this activity
-                if (mediaPlayer != null) {
-                    mediaPlayer.release();
+                //Pause mediaPlayer if present so that I do not have multiple mediaPlayers running later on when returning to this activity
+                if(mediaPlayer != null) {
+                    if (mediaPlayer.isPlaying())
+                    {
+                        mediaPlayer.pause();
+                        song_position = mediaPlayer.getCurrentPosition();
+                        btnPlay.setImageResource(R.drawable.ic_av_play_circle_fill);
+                    }
                 }
 
                 startActivityForResult(intent, REQUEST_SAVE);
