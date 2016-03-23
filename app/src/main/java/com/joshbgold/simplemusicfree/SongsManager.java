@@ -3,18 +3,17 @@ package com.joshbgold.simplemusicfree;
 import android.content.Context;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
 public class SongsManager {
 
+    public Context mContext;
     public HashMap<String, String> song;
     public String songTitle;
-    private String uniqueSongIDString = "0";
-    public Context mContext;
-    protected String lowerCaseName = "";
+    public String uniqueSongIDString = "0";
+    public int uniqueSongIDInt = 0;
 
     // SDCard Path
     public String MEDIA_PATH = "/storage";
@@ -35,26 +34,20 @@ public class SongsManager {
      */
     public ArrayList<HashMap<String, String>> getPlayList() {
 
-        File home = new File(MEDIA_PATH);
+        if (MEDIA_PATH != null) {
+            File home = new File(MEDIA_PATH);
 
-        uniqueSongIDString = "0";
-        int uniqueSongIDInt = 0;
+            if (songsList != null) {
+                songsList.clear();
+            }
 
-        if (songsList != null) {
-            songsList.clear();
-        }
-
-        if (home.listFiles() != null) {
-            //search audio files in root media directory user has selected
-            searchForAudioFiles(home, uniqueSongIDInt);
-
-            //search subfolders of root media directory for audio files
-            File[] someFiles = home.listFiles();
-            for (int i = 0; i < someFiles.length; i++) {
-                File selectedFile = someFiles[i];
-                if (selectedFile.isDirectory()) {
-                    if (selectedFile.listFiles() != null) {
-                        searchForAudioFiles(selectedFile, uniqueSongIDInt);
+            File[] listFiles = home.listFiles();
+            if (listFiles != null && listFiles.length > 0) {
+                for (File file : listFiles) {
+                    if (file.isDirectory()) {
+                        scanDirectory(file);
+                    } else {
+                        searchForAudioFiles(file);
                     }
                 }
             }
@@ -63,45 +56,57 @@ public class SongsManager {
         return songsList;
     }
 
-    private void searchForAudioFiles(File home, int uniqueSongIDInt) {
-            if ((home.listFiles(new FileExtensionFilter()).length > 0)) {
-                for (File file : home.listFiles(new FileExtensionFilter())) {  //for each file that is an audio file in home directory
-                    song = new HashMap<>();  //make a hashmap data structure to store song info
+    //search all subfolders of home root media directory for audio files
+    private void scanDirectory(File directory) {
+        if (directory != null) {
+            File[] listFiles = directory.listFiles();
+            if (listFiles != null && listFiles.length > 0) {
+                for (File file : listFiles) {
+                    if (file.isDirectory()) {
+                        scanDirectory(file);
+                    } else {
+                        searchForAudioFiles(file);
+                    }
 
-                    songTitle = file.getName();
-
-                    //remove track numbers from song titles
-                    songTitle = songTitle.replaceFirst("^\\d*\\s", "");  //replaces leading digits & following space
-                    songTitle = songTitle.replaceFirst("^\\d*\\-\\d*", "");  //replaces leading digits, following hyphen, and following digits
-
-                    song.put("songTitle", songTitle);
-                    song.put("songPath", file.getPath());
-                    song.put("songUniqueID", uniqueSongIDString);
-                    uniqueSongIDInt++;
-                    uniqueSongIDString = String.valueOf(uniqueSongIDInt);
-
-                    // Adding each song to SongList
-                    songsList.add(song);
                 }
             }
+        }
     }
 
-    /**
-     * Class to filter files which are having .mp3 extension
-     */
-    class FileExtensionFilter implements FilenameFilter {
-        public boolean accept(File dir, String name) {
-            lowerCaseName = name.toLowerCase();
-            return (name.endsWith(".mp3") || name.endsWith(".wma") || name.endsWith(".wav") || name.endsWith(".m4a") || name.endsWith(".flac"));
+    private void searchForAudioFiles(File file) {
+        String songTitleLowerCase = file.getName().toLowerCase();
+        if (isAudioFile(songTitleLowerCase)) {
+            HashMap<String, String> song = new HashMap<String, String>(); //make a hashmap data structure to store song info
+
+            songTitle = file.getName();
+
+            //remove track numbers from song titles
+            songTitle = songTitle.replaceFirst("^\\d*\\s", "");  //replaces leading digits & following space
+            songTitle = songTitle.replaceFirst("^\\d*\\-\\d*", "");  //replaces leading digits, following hyphen, and following digits
+
+            song.put("songTitle", songTitle);
+            song.put("songPath", file.getPath());
+            song.put("songUniqueID", uniqueSongIDString);
+
+            uniqueSongIDInt++;
+            uniqueSongIDString = String.valueOf(uniqueSongIDInt);
+
+            // Adding each song to SongList
+            songsList.add(song);
         }
+    }
+
+    private boolean isAudioFile(String songTitleLowerCase) {
+        return songTitleLowerCase.endsWith(".mp3") || songTitleLowerCase.endsWith(".wma") || songTitleLowerCase.endsWith(".wav") || songTitleLowerCase.endsWith(".m4a") || songTitleLowerCase.endsWith("" +
+                ".flac");
     }
 
     // Filter Class
     public ArrayList<HashMap<String, String>> filter(String searchString) {
         searchString = searchString.toLowerCase(Locale.getDefault());
 
-        songsList.clear();
-        songsList = getPlayList();
+        //songsList.clear();
+        //songsList = getPlayList();
 
         //searchString is empty, so show all songs in results
         if (searchString.length() == 0) {

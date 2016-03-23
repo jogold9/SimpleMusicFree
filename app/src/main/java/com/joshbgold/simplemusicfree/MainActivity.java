@@ -2,7 +2,7 @@ package com.joshbgold.simplemusicfree;
 
 /**
  * Based on code from Ravi Tamada http://www.androidhive.info/2012/03/android-building-audio-player-tutorial/
- * I added the search feature. Feature to select media source in progress.
+ * I added the search feature. and a feature to select the media folder source.
  */
 
 import android.app.Activity;
@@ -102,6 +102,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
         //Change action bar color
         android.app.ActionBar actionBar = getActionBar();
 
+        //Change action bar color
         if (actionBar != null) {
             actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#3F51B5")));  //sets action bar to color primary dark
         }
@@ -136,8 +137,8 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
             adview.setVisibility(View.GONE);
         }
 
-        //track launches for App Rating Dialog Box
-        AppRater.app_launched(this);
+   /*     //track launches for App Rating Dialog Box
+        AppRater.app_launched(this);*/
 
         musicFolderPath = loadPrefs("folder", musicFolderPath);  //if user has chosen a media folder, get their choice
 
@@ -386,7 +387,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 100) {
             currentSongIndex = data.getExtras().getInt("songIndex");
-            //songUniqueID = data.getExtras().getString("songUniqueID");
+            songUniqueID = data.getExtras().getString("songUniqueID");
             songTitle = data.getExtras().getString("songTitle");
             songPath = data.getExtras().getString("songPath");
         /*    songArtist = data.getExtras().getString("artist");
@@ -588,24 +589,6 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
 
         return super.onCreateOptionsMenu(menu);
     }
-
-    /* @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                //launch settings activity
-                Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }*/
-
-   /* public String getFolderPath() {
-        return folderPath;
-    }*/
 
     //Checks for mobile or wifi connectivity, returns true for connected, false otherwise
     private boolean isConnected() {

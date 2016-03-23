@@ -1,12 +1,9 @@
 package com.joshbgold.simplemusicfree;
 
-import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -39,7 +36,7 @@ public class PlayListActivity extends ListActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setTheme();
+        //setTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.playlist);
 
@@ -66,7 +63,7 @@ public class PlayListActivity extends ListActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                             @Override
                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                                String songTitle, songPath, artist, album, songUniqueID;
+                                                String songTitle, songPath, songUniqueID, artist, album;
                                                 int songIndex;
 
                                                 HashMap<String, String> song = (HashMap<String, String>) parent.getItemAtPosition(position);
@@ -80,9 +77,10 @@ public class PlayListActivity extends ListActivity {
                                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
                                                 // Sending all info about song to MainActivity
-                                                intent.putExtra("songIndex", songIndex);
                                                 intent.putExtra("songTitle", songTitle);
                                                 intent.putExtra("songPath", songPath);
+                                                intent.putExtra("songUniqueID", songUniqueID);
+                                                intent.putExtra("songIndex", songIndex);
                                                /* intent.putExtra("artist", artist);
                                                 intent.putExtra("album", album);*/
 
@@ -109,7 +107,58 @@ public class PlayListActivity extends ListActivity {
         });
     }
 
-    private void setTheme() {
+    private void createListViewUsingSongs() {
+        // looping through playlist
+        for (int i = 0; i < songsList.size(); i++) {
+            // creating new HashMap
+            HashMap<String, String> song = songsList.get(i);
+            // adding HashList to ArrayList
+            songsListData.add(song);
+
+        }
+
+        // Adding menuItems to ListView
+        simpleAdapter = new SimpleAdapter(this, songsListData,
+                R.layout.playlist_item, new String[]{"songTitle"}, new int[]{
+                R.id.songTitle});
+
+        setListAdapter(simpleAdapter);
+    }
+
+    private void updateListViewUsingSongs() {
+
+        songsAddedCounter = 0;
+        songsListData.clear();  //super important that we start from zero, and add only the filtered songs!
+        songsList.clear(); //Is this line needed??
+
+        // looping through playlist
+        for (int i = 0; i < filteredSongsList.size(); i++) {
+            // creating new HashMap
+            HashMap<String, String> song = filteredSongsList.get(i);
+            // adding HashList to ArrayList
+            songsListData.add(song);
+            songsAddedCounter++;
+        }
+        Toast.makeText(getApplicationContext(), "Search results: " + songsAddedCounter + " songs", Toast.LENGTH_LONG).show();
+
+        simpleAdapter = null;
+
+        simpleAdapter = new SimpleAdapter(this, songsListData,
+                R.layout.playlist_item, new String[]{"songTitle"}, new int[]{
+                R.id.songTitle});
+
+
+        setListAdapter(simpleAdapter);
+        simpleAdapter.notifyDataSetChanged();
+    }
+
+    //get prefs
+    public String loadPrefs(String key, String value) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        return sharedPreferences.getString(key, value);
+    }
+
+       /* private void setTheme() {
 
         loadPrefs("color", colorTheme);
         ActionBar bar = getActionBar();
@@ -146,57 +195,6 @@ public class PlayListActivity extends ListActivity {
                 }
                 break;
         }
-    }
-
-    private void createListViewUsingSongs() {
-        // looping through playlist
-        for (int i = 0; i < songsList.size(); i++) {
-            // creating new HashMap
-            HashMap<String, String> song = songsList.get(i);
-            // adding HashList to ArrayList
-            songsListData.add(song);
-
-        }
-
-        // Adding menuItems to ListView
-        simpleAdapter = new SimpleAdapter(this, songsListData,
-                R.layout.playlist_item, new String[]{"songTitle"}, new int[]{
-                R.id.songTitle});
-
-        setListAdapter(simpleAdapter);
-    }
-
-    private void updateListViewUsingSongs() {
-
-        songsAddedCounter = 0;
-        songsListData.clear();  //super important that we start from zero, and add only the filtered songs!
-        songsList.clear(); //Is this line needed??
-
-        // looping through playlist
-        for (int i = 0; i < filteredSongsList.size(); i++) {
-            // creating new HashMap
-            HashMap<String, String> song = filteredSongsList.get(i);
-            // adding HashList to ArrayList
-            songsListData.add(song);
-            songsAddedCounter++;
-        }
-        Toast.makeText(getApplicationContext(), "Search results: " + songsAddedCounter + " songs", Toast.LENGTH_SHORT).show();
-
-        simpleAdapter = null;
-
-        simpleAdapter = new SimpleAdapter(this, songsListData,
-                R.layout.playlist_item, new String[]{"songTitle"}, new int[]{
-                R.id.songTitle});
-
-
-        setListAdapter(simpleAdapter);
-        simpleAdapter.notifyDataSetChanged();
-    }
-
-    //get prefs
-    public String loadPrefs(String key, String value) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        return sharedPreferences.getString(key, value);
-    }
+    }*/
 
 }
