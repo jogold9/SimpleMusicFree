@@ -279,8 +279,9 @@ public class FileDialog extends ListActivity {
                     selectButton.setEnabled(true);
                 }
             } else {
-                new AlertDialog.Builder(this).setIcon(R.drawable.icon)
-                        .setTitle("[" + file.getName() + "] " + getText(R.string.cant_read_folder))
+                new AlertDialog.Builder(this).setIcon(R.drawable.ic_hardware_headset)
+                        .setTitle(R.string.music_not_here)
+                        .setMessage(getText(R.string.cant_read_folder))
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
                             @Override

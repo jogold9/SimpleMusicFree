@@ -3,7 +3,8 @@
     <string name="action_search">search</string>
 
     <string name="location">Location</string>
-    <string name="cant_read_folder">folder can\'t be read!</string>
+    <string name="cant_read_folder">Your music would not be in this folder, sorry.  This is an Android system folder.  Try looking in storage or
+        sdcard.  If you need help, you can email the developer using the email address listed on the Google Play page for this app. </string>
     <string name="new_folder">New</string>
     <string name="select">Select</string>
     <string name="file_name">File name:</string>
@@ -16,4 +17,5 @@
     <string name="choose_colors">Choose a theme for this app</string>
     <string name="banner_ad">ca-app-pub-0656715282551471/5361657466</string>
     <string name="banner_ad_test">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="music_not_here">Music not in this folder</string>
 </resources>

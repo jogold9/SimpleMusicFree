@@ -16,7 +16,7 @@ public class SongsManager {
     public int uniqueSongIDInt = 0;
 
     // SDCard Path
-    public String MEDIA_PATH = "/storage";
+    public String MEDIA_PATH = "";
     private ArrayList<HashMap<String, String>> songsList = new ArrayList<>();
     private ArrayList<HashMap<String, String>> filteredSongsList = new ArrayList<>();
 
@@ -34,7 +34,7 @@ public class SongsManager {
      */
     public ArrayList<HashMap<String, String>> getPlayList() {
 
-        if (MEDIA_PATH != null) {
+        if (MEDIA_PATH != null && !MEDIA_PATH.equals("")) {
             File home = new File(MEDIA_PATH);
 
             if (songsList != null) {

@@ -20,8 +20,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -60,7 +58,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
     private TextView albumTextView;
     private TextView artistTextView;
     private MediaMetadataRetriever metaRetriver;
-    private boolean connected;
+    private boolean isFirstLaunch = true;
 
     // Media Player
     private MediaPlayer mediaPlayer;
@@ -124,16 +122,36 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
         albumTextView = (TextView) findViewById(R.id.album);
         artistTextView = (TextView) findViewById(R.id.artist);
 
+        isFirstLaunch = loadPrefs("firstLaunch", isFirstLaunch); //check if the is the first launch of the app
+
+        if (isFirstLaunch) {
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("Getting Started")
+                    .setMessage("Welcome!  Please click the folder icon at " +
+                            "top right and select your music folder." + "\n" + "\n" +
+                            "Usually people store their music in a folder called sdcard or storage.  If you need help, you can email the developer " +
+                            "using the email address listed on the Google Play page for this app.")
+                    .setCancelable(false)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            //do nothing except close the alert dialog box
+                        }
+                    })
+                    .setIcon(R.drawable.ic_hardware_headset)
+                    .show();
+
+            savePrefs("firstLaunch", false);
+        }
+
         //Only display Google Admob banner if there is a network connection
-        LinearLayout layout = (LinearLayout)findViewById(R.id.ad_layout);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.ad_layout);
         adview = (AdView) findViewById(R.id.adView);
 
-        if(isConnected()) {
+        if (isConnected()) {
             AdRequest adRequest = new AdRequest.Builder().build();
             adview.loadAd(adRequest);
-        }
-        else {
-        //    Toast.makeText(MainActivity.this, "Oh noes! No connection!", Toast.LENGTH_SHORT).show();
+        } else {
+            //    Toast.makeText(MainActivity.this, "Oh noes! No connection!", Toast.LENGTH_SHORT).show();
             adview.setVisibility(View.GONE);
         }
 
@@ -162,10 +180,24 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
 
             @Override
             public void onClick(View arg0) {
-
-                Intent intent = new Intent(getApplicationContext(), PlayListActivity.class);
-                startActivityForResult(intent, 100);
-
+                //check for songs
+                if (songsList != null && songsList.size() > 0) {
+                    Intent intent = new Intent(getApplicationContext(), PlayListActivity.class);
+                    startActivityForResult(intent, 100);
+                } else {  //help user if songs not found
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("Oh noes!")
+                            .setMessage("No songs found.  Please click folder icon at top right and select your music folder." + "\n" + "\n" +
+                                    "You may want to look in folders called sdcard or storage.")
+                            .setCancelable(false)
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //do nothing except close the alert dialog box
+                                }
+                            })
+                            .setIcon(R.drawable.ic_hardware_headset)
+                            .show();
+                }
             }
         });
 
@@ -186,9 +218,8 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
                 //intent.putExtra(FileDialog.SELECTION_MODE, SelectionMode.MODE_OPEN);  //Prevents new items folder & file creation.
 
                 //Pause mediaPlayer if present so that I do not have multiple mediaPlayers running later on when returning to this activity
-                if(mediaPlayer != null) {
-                    if (mediaPlayer.isPlaying())
-                    {
+                if (mediaPlayer != null) {
+                    if (mediaPlayer.isPlaying()) {
                         mediaPlayer.pause();
                         song_position = mediaPlayer.getCurrentPosition();
                         btnPlay.setImageResource(R.drawable.ic_av_play_circle_fill);
@@ -398,7 +429,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
         /*    songArtist = data.getExtras().getString("artist");
             songAlbum = data.getExtras().getString("album");*/
             // play selected song
-            if (!"" .equals(songTitle) && songTitle != null && !"" .equals(songPath) && songPath != null) {
+            if (!"".equals(songTitle) && songTitle != null && !"".equals(songPath) && songPath != null) {
                 playSong(currentSongIndex, songTitle, songPath);
             }
 
@@ -587,22 +618,23 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
         mediaPlayer.stop();
     }
 
-    @Override
+
+//For action bar & settings option
+/*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.action_bar, menu);
 
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
 
     //Checks for mobile or wifi connectivity, returns true for connected, false otherwise
     private boolean isConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if(networkInfo != null && networkInfo.isConnectedOrConnecting()){
+        if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -611,6 +643,20 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
     public String loadPrefs(String key, String value) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         return sharedPreferences.getString(key, value);
+    }
+
+    //get prefs
+    public boolean loadPrefs(String key, boolean value) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        return sharedPreferences.getBoolean(key, value);
+    }
+
+    //save prefs
+    public void savePrefs(String key, boolean value) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(key, value);
+        editor.apply();
     }
 
     @Override
