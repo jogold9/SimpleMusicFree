@@ -8,8 +8,8 @@ android {
         applicationId "com.joshbgold.simplemusicfree"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 13
-        versionName "2.2"
+        versionCode 14
+        versionName "2.3"
     }
     buildTypes {
         release {
