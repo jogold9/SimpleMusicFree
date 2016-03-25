@@ -128,8 +128,10 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
             new AlertDialog.Builder(MainActivity.this)
                     .setTitle("Getting Started")
                     .setMessage("Welcome!  Please click the folder icon at " +
-                            "top right and select your music folder." + "\n" + "\n" +
-                            "Usually people store their music in a folder called sdcard or storage.  If you need help, you can email the developer " +
+                            "top right and select your music folder."  +
+                            "Usually people store their music in a folder called sdcard or storage."
+                                    + "\n \n" +
+                            "If you need help, you can email the developer " +
                             "using the email address listed on the Google Play page for this app.")
                     .setCancelable(false)
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
