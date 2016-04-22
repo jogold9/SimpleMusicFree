@@ -323,7 +323,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
             @Override
             public void onClick(View arg0) {
 
-                if (mediaPlayer.isPlaying()) {
+               // if (mediaPlayer.isPlaying()) {  //maybe this check is not necessary
                     // check if next song is there or not
                     if (currentSongIndex < (songsList.size() - 1)) {
                         playSong(currentSongIndex + 1, songTitle, songPath);
@@ -333,7 +333,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
                         playSong(0, songTitle, songPath);
                         currentSongIndex = 0;
                     }
-                }
+               // }
             }
         });
 
@@ -346,7 +346,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
             @Override
             public void onClick(View arg0) {
 
-                if (mediaPlayer.isPlaying()) {
+               // if (mediaPlayer.isPlaying()) { //maybe this check is not necessary
                     if (currentSongIndex > 0) {
                         playSong(currentSongIndex - 1, songTitle, songPath);
                         currentSongIndex = currentSongIndex - 1;
@@ -355,7 +355,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
                         playSong(songsList.size() - 1, songTitle, songPath);
                         currentSongIndex = songsList.size() - 1;
                     }
-                }
+               // }
             }
         });
 
@@ -634,11 +634,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
     private boolean isConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
-            return true;
-        } else {
-            return false;
-        }
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
     }
 
     //get prefs
