@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -51,8 +52,11 @@ public class PlayListActivity extends ListActivity {
         musicFolderPath =  loadPrefs("folder", musicFolderPath);  //if user has chosen a media folder, get their choice
 
         songsManager = new SongsManager(context, musicFolderPath);
-        // get all songs from SD card
-        this.songsList = songsManager.getPlayList();  //gets all the songs from the phone and puts them in the HashMap
+
+        // get all songs from SD card if needed
+        //if (this.songsList.isEmpty()){
+            this.songsList = songsManager.getPlayList();  //gets all the songs from the phone and puts them in the HashMap
+       //}
 
         createListViewUsingSongs();  //draws the ListView on the screen using the songsList HashMap
 
