@@ -5,6 +5,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimary">
 
+
     <!-- Player Header -->
     <LinearLayout
         android:id="@+id/player_header_bg"
@@ -38,13 +39,21 @@
             <TextView
                 android:id="@+id/songTitle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
                 android:textColor="#04b3d2"
                 android:textSize="16dp"
                 android:textStyle="bold"/>
+
+            <ImageButton
+                android:id="@+id/btnFeedback"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="10dp"
+                android:background="@null"
+                android:src="@drawable/feedback"/>
 
             <!-- Playlist button -->
             <ImageButton
@@ -62,6 +71,7 @@
                 android:background="@null"
                 android:src="@drawable/ic_file_folder"
                 />
+
         </LinearLayout>
     </LinearLayout>
 
