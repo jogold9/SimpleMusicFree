@@ -42,6 +42,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
     private static final int REQUEST_LOAD = 102;
 
     //variables for layout items
+    private ImageButton btnFeedback;
     private ImageButton btnPlay;
     private ImageButton btnForward;
     private ImageButton btnBackward;
@@ -106,6 +107,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
         }
 
         // All player buttons
+        btnFeedback = (ImageButton) findViewById(R.id.btnFeedback);
         btnPlay = (ImageButton) findViewById(R.id.btnPlay);
         btnForward = (ImageButton) findViewById(R.id.btnForward);
         btnBackward = (ImageButton) findViewById(R.id.btnBackward);
@@ -173,6 +175,46 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
 
         // Getting all songs playlist_item
         songsList = songManager.getPlayList();
+
+        /**
+         * Button click event for feedback button allows user to email feedback to developer
+         */
+
+        btnFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Tell Us What You Think");
+                builder.setMessage("Do you want to write an email to the developer with your feedback about Simple Music?  Your comments and suggestions are greatly appreciated!  ");
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        String emailDestinations[] = { "joshuabgold@gmail.com" };
+                        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                        emailIntent.setType("plain/text");
+                        emailIntent.putExtra(Intent.EXTRA_EMAIL, emailDestinations);
+                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Simple Music Free Feedback");
+                        emailIntent.putExtra(Intent.EXTRA_TEXT, " I have the following feedback for the Simple Music Free Android App: ");
+                        startActivity(Intent.createChooser(emailIntent, "Send your email in:"));
+
+                        //Close the dialog
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
 
         /**
          * Button Click event for Play playlist_item click event
