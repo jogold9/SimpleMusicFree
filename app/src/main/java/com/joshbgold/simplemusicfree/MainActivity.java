@@ -195,7 +195,7 @@ public class MainActivity extends Activity implements MediaPlayer.OnCompletionLi
                         emailIntent.putExtra(Intent.EXTRA_EMAIL, emailDestinations);
                         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Simple Music Free Feedback");
                         emailIntent.putExtra(Intent.EXTRA_TEXT, " I have the following feedback for the Simple Music Free Android App: ");
-                        startActivity(Intent.createChooser(emailIntent, "Send your email in:"));
+                        startActivity(Intent.createChooser(emailIntent, "Please pick your email app:"));
 
                         //Close the dialog
                         dialog.dismiss();
