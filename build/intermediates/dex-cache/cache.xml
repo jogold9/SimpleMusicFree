@@ -7,35 +7,26 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.1"
-        sha1="ff411fc10911a65cc18e171a714d006bc3dc8d1b">
+        sha1="59f0a3890b0c02b84ed747b41272e4b15cbb3089">
         <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_9cdb9b06f65255ec4fa47c2bd8c3af0f248ba182\classes.dex" />
     </item>
     <item
-        is-multidex="true"
-        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.4.0\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="2028eaa9e0f2ab194c10a46aee15450a7f71065a">
-        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_3dc123101bab7e6488f9df5b02c4b560d008804f\classes.dex" />
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-basement-8.4.0_b5955c0e458c0aa456a67e0bac2d49d871def6ad.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\joshg\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
         optimize="true"
         revision="23.0.1"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.0.1_f4ca0a61e821d39da3f96ed3b6a7ab4dad0566a7\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\libs\directorypicker.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="812e7fd07d5739bf0edd0cd91624ab29e4fecd70">
-        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\transforms\dex\debug\folders\1000\2\directorypicker_4ef79b1e13ae8bdca159aefec84f28b6ce29bb8f\classes.dex" />
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\pre-dexed\release\support-annotations-23.0.1_904620a9ee47142e13076b3e050c02d735365281.jar" />
     </item>
     <item
         is-multidex="true"
@@ -57,21 +48,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.0.1_08a8a210c387ec3aa44ac82425873d77c4f3558b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.1"
         sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
         <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.0.1_9cbbe4c164c865a5fc722e1e44015bfaaf4bd6b1\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\pre-dexed\release\com.android.support-appcompat-v7-23.0.1_9cbbe4c164c865a5fc722e1e44015bfaaf4bd6b1.jar" />
     </item>
     <item
         is-multidex="true"
@@ -81,6 +72,78 @@
         revision="23.0.1"
         sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
         <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.0.1_904620a9ee47142e13076b3e050c02d735365281\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.4.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="b5e7892fb0708e792e0e933c4c0a0ca0ac7831fb">
+        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\pre-dexed\release\com.google.android.gms-play-services-ads-8.4.0_6a80218506b555373a34f29ffad5b82929900c6a.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="2028eaa9e0f2ab194c10a46aee15450a7f71065a">
+        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_3dc123101bab7e6488f9df5b02c4b560d008804f\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\pre-dexed\release\internal_impl-23.0.1_f4ca0a61e821d39da3f96ed3b6a7ab4dad0566a7.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.0.1_f4ca0a61e821d39da3f96ed3b6a7ab4dad0566a7\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\pre-dexed\release\com.android.support-support-v4-23.0.1_08a8a210c387ec3aa44ac82425873d77c4f3558b.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\libs\directorypicker.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="812e7fd07d5739bf0edd0cd91624ab29e4fecd70">
+        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\transforms\dex\debug\folders\1000\2\directorypicker_4ef79b1e13ae8bdca159aefec84f28b6ce29bb8f\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\libs\directorypicker.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="812e7fd07d5739bf0edd0cd91624ab29e4fecd70">
+        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\pre-dexed\release\directorypicker_4ef79b1e13ae8bdca159aefec84f28b6ce29bb8f.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="D:\Users\joshg\AndroidStudioProjects\Simple Music Free\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.0.1_08a8a210c387ec3aa44ac82425873d77c4f3558b\classes.dex" />
     </item>
 
 </items>
